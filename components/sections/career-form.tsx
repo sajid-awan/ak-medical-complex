@@ -13,19 +13,21 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { FormField } from "@/components/form-field";
+import { CvUploadDropzone } from "@/components/cv-upload-dropzone";
 import { FadeUp } from "@/components/motion-fade";
 import { SuccessPanel } from "@/components/success-panel";
 import { departments } from "@/lib/site-data";
 import { careerSchema, type CareerValues } from "@/lib/schemas";
 import { openWhatsApp } from "@/lib/whatsapp";
 
-const DEFAULTS: CareerValues = {
+const DEFAULTS = {
   name: "",
   phone: "",
   position: "",
-  gender: "Male",
+  gender: "Male" as const,
   experience: "",
   message: "",
+  cv: undefined,
 };
 
 const EXPERIENCE_OPTIONS = [
@@ -69,6 +71,7 @@ export function CareerForm({ formId, prefillPosition }: Props) {
       Gender: values.gender,
       Experience: values.experience ?? "",
       Message: values.message ?? "",
+      CV: values.cv.name,
     });
     setSent(true);
   });
@@ -219,6 +222,25 @@ export function CareerForm({ formId, prefillPosition }: Props) {
               />
             </FormField>
 
+            <FormField
+              label="Upload CV *"
+              htmlFor="career-cv"
+              error={errors.cv?.message as string | undefined}
+            >
+              <Controller
+                control={control}
+                name="cv"
+                render={({ field }) => (
+                  <CvUploadDropzone
+                    id="career-cv"
+                    value={field.value}
+                    onChange={field.onChange}
+                    aria-invalid={!!errors.cv}
+                  />
+                )}
+              />
+            </FormField>
+
             <Button
               type="submit"
               disabled={isSubmitting}
@@ -228,7 +250,8 @@ export function CareerForm({ formId, prefillPosition }: Props) {
               Send Application on WhatsApp
             </Button>
             <p className="text-center text-muted-foreground text-[11px]">
-              You will be redirected to WhatsApp to confirm your application.
+              You will be redirected to WhatsApp — please attach your CV file in
+              the chat before sending.
             </p>
           </form>
         )}
