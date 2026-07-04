@@ -11,7 +11,7 @@ export function Footer() {
           width={658}
           height={235}
           unoptimized
-          className="h-6 w-auto opacity-40"
+          className="h-6 w-auto brightness-0 invert opacity-40"
         />
         <span className="text-white/60 text-xs text-center">
           © {new Date().getFullYear()} Al-Karim Medical Complex, Minchinabad ·
