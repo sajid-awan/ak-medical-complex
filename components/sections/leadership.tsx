@@ -30,11 +30,6 @@ export function Leadership() {
                   <Badge className="absolute top-4 right-4 rounded-sm uppercase tracking-wider text-[10px] px-2.5 py-1">
                     {person.title}
                   </Badge>
-                  <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full flex items-center justify-center border-2 border-primary/50 bg-primary/90">
-                    <span className="text-white text-base font-black">
-                      {person.initials}
-                    </span>
-                  </div>
                 </div>
                 <CardContent className="p-5">
                   <h3 className="font-black text-base mb-1.5">{person.name}</h3>

@@ -14,7 +14,6 @@ export type Department = {
 
 export type Reason = { icon: LucideIcon; title: string; desc: string };
 export type Leader = {
-  initials: string;
   name: string;
   title: string;
   desc: string;
@@ -117,14 +116,12 @@ export const reasons: Reason[] = [
 
 export const leadership: Leader[] = [
   {
-    initials: "AK",
     name: "Haji Abdul Karim Mughal",
     title: "Chairman",
     desc: "Visionary founder committed to bringing world-class healthcare to Minchinabad and the wider Bahawalnahar region.",
     image: "/imports/abdul-karim.png",
   },
   {
-    initials: "SI",
     name: "Shaikh Intisar ul Haq Shami",
     title: "Chief Executive Officer",
     desc: "Leading Al-Karim Medical Complex with a mission to deliver compassionate, affordable, and advanced medical care.",
