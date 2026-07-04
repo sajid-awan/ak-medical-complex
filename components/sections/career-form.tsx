@@ -18,7 +18,7 @@ import { FadeUp } from "@/components/motion-fade";
 import { SuccessPanel } from "@/components/success-panel";
 import { departments } from "@/lib/site-data";
 import { careerSchema, type CareerValues } from "@/lib/schemas";
-import { openWhatsApp } from "@/lib/whatsapp";
+import { openWhatsAppWithCv } from "@/lib/whatsapp";
 
 const DEFAULTS = {
   name: "",
@@ -45,6 +45,7 @@ type Props = {
 
 export function CareerForm({ formId, prefillPosition }: Props) {
   const [sent, setSent] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     control,
@@ -63,22 +64,33 @@ export function CareerForm({ formId, prefillPosition }: Props) {
     }
   }, [prefillPosition, setValue]);
 
-  const onSubmit = handleSubmit((values) => {
-    openWhatsApp("Job Application — Al-Karim Medical Complex", {
-      Name: values.name,
-      Phone: values.phone,
-      Position: values.position,
-      Gender: values.gender,
-      Experience: values.experience ?? "",
-      Message: values.message ?? "",
-      CV: values.cv.name,
-    });
-    setSent(true);
+  const onSubmit = handleSubmit(async (values) => {
+    setSubmitError(null);
+    try {
+      await openWhatsAppWithCv(
+        "Job Application — Al-Karim Medical Complex",
+        {
+          Name: values.name,
+          Phone: values.phone,
+          Position: values.position,
+          Gender: values.gender,
+          Experience: values.experience ?? "",
+          Message: values.message ?? "",
+        },
+        values.cv,
+      );
+      setSent(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : "Could not upload CV. Try again.",
+      );
+    }
   });
 
   const handleReset = () => {
     reset(DEFAULTS);
     setSent(false);
+    setSubmitError(null);
   };
 
   return (
@@ -97,7 +109,7 @@ export function CareerForm({ formId, prefillPosition }: Props) {
         {sent ? (
           <SuccessPanel
             title="Application Sent!"
-            body="Your WhatsApp application has been opened. Our HR team will be in touch shortly."
+            body="Your CV was uploaded and WhatsApp has been opened with your application details and CV link."
             actionLabel="Submit another application"
             onReset={handleReset}
           />
@@ -241,17 +253,23 @@ export function CareerForm({ formId, prefillPosition }: Props) {
               />
             </FormField>
 
+            {submitError && (
+              <p role="alert" className="text-destructive text-xs font-medium">
+                {submitError}
+              </p>
+            )}
+
             <Button
               type="submit"
               disabled={isSubmitting}
               className="w-full gap-2"
             >
               <Send size={14} />
-              Send Application on WhatsApp
+              {isSubmitting ? "Uploading CV…" : "Send Application on WhatsApp"}
             </Button>
             <p className="text-center text-muted-foreground text-[11px]">
-              You will be redirected to WhatsApp — please attach your CV file in
-              the chat before sending.
+              Your CV will be uploaded and a download link will be included in
+              the WhatsApp message.
             </p>
           </form>
         )}

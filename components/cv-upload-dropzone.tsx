@@ -127,7 +127,6 @@ export function CvUploadDropzone({
           dragging && "border-primary bg-primary/5",
           invalid && "border-destructive",
         )}
-        aria-invalid={invalid}
       >
         <Upload className="size-6 text-muted-foreground" />
         <div>
@@ -142,6 +141,7 @@ export function CvUploadDropzone({
           type="file"
           accept={CV_ACCEPT}
           className="sr-only"
+          aria-invalid={invalid}
           onChange={(event) => handleFile(event.target.files?.[0])}
         />
       </div>
