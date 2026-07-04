@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "Al-Karim Medical Complex — Minchinabad",
   description:
     "Al-Karim Medical Complex delivers specialist care across five departments in Minchinabad, Bahawalnahar — 24/7 emergency, specialist OPD, lab, pharmacy, and more.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     title: "Al-Karim Medical Complex — Minchinabad",
     description:
