@@ -16,13 +16,13 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Al-Karim Medical Complex — Minchinabad",
+  title: "Coming Soon — Al-Karim Medical Complex",
   description:
-    "Al-Karim Medical Complex delivers specialist care across five departments in Minchinabad, Bahawalnahar — 24/7 emergency, specialist OPD, lab, pharmacy, and more.",
+    "Al-Karim Medical Complex in Minchinabad is launching a new website soon. Contact us on WhatsApp for appointments and inquiries.",
   openGraph: {
-    title: "Al-Karim Medical Complex — Minchinabad",
+    title: "Coming Soon — Al-Karim Medical Complex",
     description:
-      "Comprehensive healthcare across five departments in Minchinabad, Bahawalnahar.",
+      "Our new website is on the way. Contact Al-Karim Medical Complex for appointments and care in Minchinabad.",
     type: "website",
   },
 };
