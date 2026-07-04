@@ -122,6 +122,12 @@ export const leadership: Leader[] = [
     image: "/imports/abdul-karim.png",
   },
   {
+    name: "Abdul Sattar Mughal",
+    title: "Co-Chairman",
+    desc: "Supporting the hospital's growth and community outreach with a steadfast commitment to quality care and patient welfare.",
+    image: "/imports/abdul-sattar.png",
+  },
+  {
     name: "Shaikh Intisar ul Haq Shami",
     title: "Chief Executive Officer",
     desc: "Leading Al-Karim Medical Complex with a mission to deliver compassionate, affordable, and advanced medical care.",

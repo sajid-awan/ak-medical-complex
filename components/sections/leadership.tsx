@@ -15,7 +15,7 @@ export function Leadership() {
           description="Guided by experience and driven by a shared vision of accessible, dignified healthcare for all."
         />
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl">
           {leadership.map((person, i) => (
             <FadeUp key={person.name} delay={i * 0.1}>
               <Card className="rounded-sm overflow-hidden hover:border-primary/25 transition-colors p-0 gap-0 h-full">
